@@ -2,38 +2,27 @@
 var suspicious = require('commonform-suspicious')
 ```
 
-# Deep Nesting
+The examples in this README are the package's test suite.
 
 ```javascript
 var assert = require('assert')
+```
 
-assert(
-  suspicious({
-    content: [
-      { form: { content: [
-        { form: { content: [
-          { form: { content: [
-            { form: { content: [
-              { form: { content: [
-                { form: { content: [
-                  { form: { content: [
-                    { form: { content: [
-                      { form: { content: [
-                        { form: { content: [ 'A' ] } } ] } }
-                                                 ] } } ] } }
-                                                 ] } } ] } }
-                                                 ] } } ] } }
-                                                 ] } } ] } } ] }))
+# Deep Nesting
+
+```javascript
+var deeplyNested = { content: [ 'A' ] }
+
+for (var depth = 0; depth < 11; depth++) {
+  deeplyNested = { content: [ { form: deeplyNested } ] } }
+
+assert(suspicious(deeplyNested))
 ```
 
 # Long Defined Terms
 
 ```javascript
-var term = (
-  'This is a really long defined term' +
-  ' that just keeps going' +
-  ' and going' +
-  ' and going' )
+var term = ( 'This defined term keeps going' + ' and going'.repeat(10) )
 
 assert(suspicious({ content: [ { definition: term } ] }))
 
@@ -43,14 +32,9 @@ assert(suspicious({ content: [ { use: term } ] }))
 # Long Headings
 
 ```javascript
-var heading = (
-  'This is a really long heading ' +
-  ' that just keeps going' +
-  ' and going' +
-  ' and going' )
+var heading = ( 'This heading keeps going' + ' and going'.repeat(10) )
 
-assert(
-  suspicious({ content: [ { reference: heading } ] }))
+assert(suspicious({ content: [ { reference: heading } ] }))
 
 assert(
   suspicious({
@@ -75,8 +59,9 @@ assert(suspicious({ content: longContentArray }))
 # Long Words
 
 ```javascript
+var word = ( 'gobbledy' + 'obbledy'.repeat(10) + 'gook' )
+
+assert(suspicious({ content: [ word ] }))
 assert(!suspicious({ content: [ 'gobbledygook' ] }))
 assert(!suspicious({ content: [ 'gobbledy gook' ] }))
-var word = ( 'gobbledy' + 'obbledy'.repeat(10) + 'gook' )
-assert(suspicious({ content: [ word ] }))
 ```
