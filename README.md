@@ -19,7 +19,11 @@ assert(
                   { form: { content: [
                     { form: { content: [
                       { form: { content: [
-                        { form: { content: [ 'A' ] } } ] } } ] } } ] } } ] } } ] } } ] } } ] } } ] } } ] } } ] }))
+                        { form: { content: [ 'A' ] } } ] } }
+                                                 ] } } ] } }
+                                                 ] } } ] } }
+                                                 ] } } ] } }
+                                                 ] } } ] } } ] }))
 ```
 
 # Long Defined Terms
