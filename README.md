@@ -54,3 +54,16 @@ assert(
       { heading: heading,
         form: { content: [ 'A' ] } } ] }))
 ```
+
+# Long Content Arrays
+
+```javascript
+var longContentArray = [ ]
+for (var index = 0; index < 300; index++) {
+  if (index % 2) {
+    longContentArray.push('X') }
+  else {
+    longContentArray.push({ use: 'Y' }) } }
+
+assert(suspicious({ content: longContentArray }))
+```
