@@ -16,5 +16,8 @@
   "repository": "commonform/commonform-suspicious",
   "scripts": {
     "test": "cat README.md | defence | replace-require-self | node"
+  },
+  "dependencies": {
+    "commonform-predicate": "^0.4.3"
   }
 }
