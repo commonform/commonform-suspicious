@@ -3,6 +3,9 @@
   "description": "identify suspcious Common Forms",
   "version": "0.0.0",
   "author": "Kyle E. Mitchell <kyle@kemitchell.com> (https://kemitchell.com/)",
+  "dependencies": {
+    "commonform-predicate": "^0.4.3"
+  },
   "devDependencies": {
     "defence-cli": "^1.0.4",
     "replace-require-self": "^1.0.1"
@@ -14,8 +17,5 @@
   "repository": "commonform/commonform-suspicious",
   "scripts": {
     "test": "cat README.md | defence | replace-require-self | node"
-  },
-  "dependencies": {
-    "commonform-predicate": "^0.4.3"
   }
 }
