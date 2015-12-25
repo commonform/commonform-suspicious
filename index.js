@@ -6,6 +6,7 @@ var MAX_DEPTH = 9
 var MAX_CONTENT_LENGTH = 100
 var MAX_HEADING_LENGTH = 50
 var MAX_TERM_LENGTH = 50
+var MAX_WORD_LENGTH = 50
 
 function suspicious(form, depth) {
   var index, length, element
@@ -30,6 +31,11 @@ function suspicious(form, depth) {
           ( is.use(element) &&
             ( element.use.length > MAX_TERM_LENGTH ) ) ||
           ( is.reference(element) &&
-            ( element.reference.length > MAX_HEADING_LENGTH ) ) )
+            ( element.reference.length > MAX_HEADING_LENGTH ) ) ||
+          ( is.text(element) &&
+            ( element.split(/\b/).some(tooLong) ) ) )
             { return true } }
       return false } } }
+
+function tooLong(word) {
+  return ( word.length > MAX_WORD_LENGTH ) }

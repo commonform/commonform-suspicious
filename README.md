@@ -67,3 +67,12 @@ for (var index = 0; index < 300; index++) {
 
 assert(suspicious({ content: longContentArray }))
 ```
+
+# Long Words
+
+```javascript
+assert(!suspicious({ content: [ 'gobbledygook' ] }))
+assert(!suspicious({ content: [ 'gobbledy gook' ] }))
+var word = ( 'gobbledy' + 'obbledy'.repeat(10) + 'gook' )
+assert(suspicious({ content: [ word ] }))
+```
