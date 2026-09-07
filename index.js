@@ -1,4 +1,4 @@
-import * as predicate from 'commonform-predicate'
+import { child, definition, text, use, reference } from 'commonform-predicate'
 
 const MAX_DEPTH = 9
 const MAX_CONTENT_LENGTH = 100
@@ -20,7 +20,7 @@ export default function suspicious (form, depth) {
     } else {
       for (index = 0; index < length; index++) {
         element = form.content[index]
-        if (predicate.child(element)) {
+        if (child(element)) {
           if (
             ('heading' in element) &&
             (element.heading.length > MAX_HEADING_LENGTH)
@@ -28,18 +28,18 @@ export default function suspicious (form, depth) {
           if (suspicious(element.form, (depth + 1))) return true
         }
         if (
-          predicate.definition(element) &&
+          definition(element) &&
           element.definition.length > MAX_TERM_LENGTH
         ) return true
         if (
-          predicate.use(element) &&
+          use(element) &&
           element.use.length > MAX_TERM_LENGTH
         ) return true
         if (
-          predicate.reference(element) &&
+          reference(element) &&
           element.reference.length > MAX_HEADING_LENGTH
         ) return true
-        if (predicate.text(element) && (element.split(/\b/).some(tooLong))) return true
+        if (text(element) && (element.split(/\b/).some(tooLong))) return true
       }
       return false
     }
